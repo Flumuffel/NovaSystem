@@ -1,1 +1,1 @@
-# NovaSystem
+# LAMP Proof of Concept
