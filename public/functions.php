@@ -1,3 +1,4 @@
+
 <?php
 
 class CurlHelper {
@@ -187,3 +188,4 @@ function getMostUserStats($type, $value) {
   $string = "'" . implode ( "', '", $data[$value] ) . "'";
   return $string;
 }
+

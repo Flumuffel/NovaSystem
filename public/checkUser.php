@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 $time_start = microtime(true);
@@ -376,5 +377,4 @@ if (isset($_POST['create'])) {
             echo "<script>console.log('Database Connect time: ".$_SESSION["database_time"]." ms total')</script>";
           ?>
     </body>
-
-    </html>
+ </html>
