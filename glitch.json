@@ -1,4 +1,5 @@
 {
   "install": "echo 'No install needed'",
-  "start": "bash lamp-start.sh"
+  "start": "bash lamp-start.sh",
+  "mysql": "sh .mysql/run-mysqld.sh"
 }
