@@ -75,9 +75,8 @@ if (isset($_POST['admin_dsaig9d98923'])) {
           echo "<p class='h3 text-center' style='color: red; margin-top: 10px;'>The user could not be updated!</p>";
           header("Refresh:5");
         }
-      }
-    } else if ($type == 'delete') {
-      if ($result == false){
+      } else if ($type == 'delete') {
+        if ($result == false){
         $stmt = $conn->prepare("DELETE FROM users WHERE Username = :usern");
         $stmt->bindParam(':usern', $_POST['username']);
         $stmt->execute();
