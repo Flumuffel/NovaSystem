@@ -1,0 +1,2 @@
+- name: Automatically Merge PR
+  uses: plm9606/automerge_actions@1.0.1
