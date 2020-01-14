@@ -180,7 +180,7 @@
                         <a class="nav-link" href="https://nova.flumuffel.tk/tutorial.php">Tutorial</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link 4</a>
+                        <a class="nav-link" href="https://nova.flumuffel.tk/userStats.php">User Stats</a>
                     </li>
                 </ul>
             </div>

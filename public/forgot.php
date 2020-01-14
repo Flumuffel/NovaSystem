@@ -1,5 +1,6 @@
 <?php
 session_start();
+$beta = true;
 if ( isset($_SESSION["id"]) )
 {
     // Benutzer begruessen

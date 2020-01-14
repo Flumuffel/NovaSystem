@@ -8,7 +8,6 @@ if ( isset($_SESSION["id"]) )
 }
 
 // HTTPS Überprüfung
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +32,6 @@ if ( isset($_SESSION["id"]) )
       <div class="modal-content">
 
         <div class="col-12 user-img">
-
           <img src="https://cdn.glitch.com/55991224-c07c-4284-8588-d0a7fa182f2b%2Fprofil.png?v=1575276185554">
         </div>
 
