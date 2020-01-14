@@ -65,9 +65,10 @@
         $pass = true;
       } else {
         if( !empty($row) ) {
+          $pas = password_hash($_POST['password'], PASSWORD_DEFAULT);
           $stmt = $conn->prepare("UPDATE users SET Password = :pass WHERE id = :id"); 
           $stmt->bindParam(':id', $row['id']);
-          $stmt->bindParam(':pass', password_hash($_POST['password'], PASSWORD_DEFAULT));
+          $stmt->bindParam(':pass', $pas);
           $stmt->execute();
         }
       } 
@@ -107,11 +108,11 @@
                     </div>
                     <div class="form-group">
                       <label class="text-secondary" for="user">Username</label>
-                      <input id="user" name="benutzername" type="text" <?php if(isset($user)){ echo "class='form-control text-center btn-outline-danger'";}elseif ($user == "success"){ echo "class='form-control text-center btn-outline-success'"; }  else { echo "class='form-control text-center'"; } ?> <?php echo "value='" . $_SESSION['benutzername'] . "'"; ?> placeholder="Change Username" <?php if($_SESSION['benutzername'] == "Testuser"){echo "readonly";}?>>
+                      <input id="user" name="benutzername" type="text" <?php if(isset($user)){ echo "class='form-control text-center btn-outline-danger'";}elseif (isset($user) && $user == "success"){ echo "class='form-control text-center btn-outline-success'"; }  else { echo "class='form-control text-center'"; } ?> <?php if(isset($_SESSION['benutzername'])) {echo "value='" . $_SESSION['benutzername'] . "'";} ?> placeholder="Change Username" <?php if($_SESSION['benutzername'] == "Testuser"){echo "readonly";}?>>
                     </div>
                     <div class="form-group">
                       <label class="text-secondary" for="pass">Password</label>
-                      <input id="pass" name="password" type="password" <?php if(isset($pass)){ echo "class='form-control text-center btn-outline-danger'";} elseif ($pass == "success"){ echo "class='form-control text-center btn-outline-success'"; } else { echo "class='form-control text-center'"; } ?> <?php echo "value='" . $_POST['password'] . "'";?> placeholder="Change Password" <?php if($_SESSION['benutzername'] == "Testuser"){echo "readonly";}?>>
+                      <input id="pass" name="password" type="password" <?php if(isset($pass)){ echo "class='form-control text-center btn-outline-danger'";} elseif (isset($pass) && $pass == "success"){ echo "class='form-control text-center btn-outline-success'"; } else { echo "class='form-control text-center'"; } ?> <?php if(isset($_POST['password'])) {echo "value='" . $_POST['password'] . "'";}?> placeholder="Change Password" <?php if($_SESSION['benutzername'] == "Testuser"){echo "readonly";}?>>
                     </div>
                     <button type="submit" class="btn bg-info" name="UsChange" value="Save"><i class="fas fa-sign-in-alt"></i> Save</button>
                     <p></p>

@@ -1,4 +1,3 @@
-
 <?php
 
 class CurlHelper {
@@ -44,7 +43,7 @@ function getUserData($username)
         $data = json_decode($get_data, true);
         
         if(isset($data["success"]) && $data["success"] === false) {
-          die("User not found."); // Dreckig aber funktioniert
+          die("User not found.");
         }
 
       
@@ -136,7 +135,7 @@ function getStatsData($type, $value)
 }
 
 
-function getMostUserStats($type, $value) {
+function getMostUserStats($type, $value, $all) {
   switch($type) {
     case 'label';
       $type = 'notes';
@@ -169,9 +168,16 @@ function getMostUserStats($type, $value) {
     }
   $data['label'] = [];
   $data['value'] = [];
+  if($value == 'user'){
+    return $user;
+  }
   foreach ($user as $item) {
     $count = 0;
-    $stmt2 = $conn->prepare("SELECT * FROM " . $type . "  WHERE Creator = :user AND Time > NOW() - INTERVAL 1 DAY ORDER BY Creator ASC");
+    if(isset($all) && $all == true){
+      $stmt2 = $conn->prepare("SELECT * FROM " . $type . "  WHERE Creator = :user ORDER BY Creator ASC");
+    } else { 
+      $stmt2 = $conn->prepare("SELECT * FROM " . $type . "  WHERE Creator = :user AND Time > NOW() - INTERVAL 1 DAY ORDER BY Creator ASC");
+    }
     $stmt2->bindParam(':user', $item);
     $stmt2->execute();
     
@@ -183,9 +189,9 @@ function getMostUserStats($type, $value) {
     if($count>0) {
     array_push($data['label'], $item);
     array_push($data['value'], $count);
+      
     }
   }
   $string = "'" . implode ( "', '", $data[$value] ) . "'";
   return $string;
 }
-

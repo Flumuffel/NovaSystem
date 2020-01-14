@@ -1,4 +1,3 @@
-
 <?php
     session_start();
     include 'functions.php';
@@ -13,7 +12,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Nova System | Desktop</title>
@@ -49,9 +48,6 @@
                     <a href="admin/dashboard.php" type="button" class="btn btn-outline-danger">Admin Panel</a>
                   <?php if(getRank($_SESSION['benutzername']) < OWNER) { goto noremote;} ?>
                     <a href="admin/remoteLogin.php" type="button" class="btn btn-outline-danger">Remote Login</a>
-                    <?php 
-
-                    ?>
                   <?php noremote: ?>
                   </div>
                   <?php nospec: ?>
@@ -64,12 +60,10 @@
             </div>
         </div>
     </div>
-</body>
-            
- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script>
         var design = false;
-        var user = [<?php echo getStatsData('label','label');?>];
+        var user = [<?php echo getMostUserStats('label','label',false);?>];
         var color = [];
         var dynamicColors = function() {
           var r = Math.floor(Math.random() * 255);
@@ -86,19 +80,19 @@
                 mydata = {
                     datasets: [{
                                 label: ['notes'],
-                                data: [<?php echo getStatsData('notes','value');?>],
+                                data: [<?php echo getMostUserStats('notes','value',false);?>],
                         backgroundColor: color,
                     }, {
                                 label: ['warnings'],
-                                data: [<?php echo getStatsData('warnings','value');?>],
+                                data: [<?php echo getMostUserStats('warnings','value',false);?>],
                         backgroundColor: color,
                     }, {
                                 label: ['kicks'],
-                                data: [<?php echo getStatsData('kicks','value');?>],
+                                data: [<?php echo getMostUserStats('kicks','value',false);?>],
                         backgroundColor: color,
                     }, {
                                 label: ['bans'],
-                                data: [<?php echo getStatsData('bans','value');?>],
+                                data: [<?php echo getMostUserStats('bans','value',false);?>],
                         backgroundColor: color,
                     }],
                     labels: user,
@@ -130,30 +124,5 @@
           }
         });
     </script>
-
+</body>
 </html>
-
-<!-- 
-    <script>
-        var xmlhttp = new XMLHttpRequest();
-         var url = "myTutorials.txt";
-            
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var myArr = JSON.parse(this.responseText);
-                myFunction(myArr);
-            }
-        };
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-            
-        function myFunction(arr) {
-            var out = "";
-            var i;
-            for(i = 0; i < arr.length; i++) {
-                out += '<a href="' + arr[i].url + '">' +
-                arr[i].display + '</a><br>';
-            }
-            document.getElementById("id01").innerHTML = out;
-        }
-    </script>
